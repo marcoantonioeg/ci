@@ -1,0 +1,27 @@
+name: marco-CI
+
+on:
+   push:
+      branches:
+         - main
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Traer el codigo al contenedor
+           uses: actions/checkout@v4
+         - name: Subir Archivo
+           run: echo "hola mundo" > file.txt
+         - uses: actions/upload-artifact@v2
+           with:
+              name: file
+              path: file.txt
+   deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+         - name: Descargar Archivo
+           uses: actions/download-artifact@v2
+           with:
+            name: file
+         - run: cat file.txt
