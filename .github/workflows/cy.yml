@@ -12,7 +12,7 @@ jobs:
            uses: actions/checkout@v4
          - name: Subir Archivo
            run: echo "hola mundo" > file.txt
-         - uses: actions/upload-artifact@v2
+         - uses: actions/upload-artifact@v3
            with:
               name: file
               path: file.txt
@@ -22,7 +22,7 @@ jobs:
       environment: produccion
       steps:
          - name: Descargar Archivo
-           uses: actions/download-artifact@v2
+           uses: actions/download-artifact@v3
            with:
             name: file
          - run: cat file.txt
